@@ -1,42 +1,19 @@
-# karma-safari-launcher
+Hack for https://github.com/karma-runner/karma-safari-launcher to close Safari "properly," using AppleScript, preventing it from reopening tabs regardless of browser settings, causing Karma test runs to stack up.
 
-> Launcher for Safari.
+It kind of circumvents the event/signal system for killing/restarting browser processes in Karma, so it's probably not really a proper solution.
 
-## Installation
-
-The easiest way is to keep `karma-safari-launcher` as a devDependency in your `package.json`.
-```json
-{
-  "devDependencies": {
-    "karma": "~0.10",
-    "karma-safari-launcher": "~0.1"
-  }
-}
-```
-
-You can simple do it by:
-```bash
-npm install karma-safari-launcher --save-dev
-```
-
-## Configuration
+To use (karma.conf):
 ```js
-// karma.conf.js
 module.exports = function(config) {
   config.set({
-    browsers: ['Safari']
+    browsers: ['Safari-hack']
   });
 };
 ```
 
-You can pass list of browsers as a CLI argument too:
+Or from the command line:
 ```bash
-karma start --browsers Safari
+karma start --browsers Safari-hack
 ```
-
-----
-
-For more information on Karma see the [homepage].
-
 
 [homepage]: http://karma-runner.github.com

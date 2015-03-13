@@ -1,6 +1,6 @@
 var fs = require('fs');
 var path = require('path');
-
+var exec = require('child_process').exec;
 
 var SafariBrowser = function(baseBrowserDecorator) {
   baseBrowserDecorator(this);
@@ -18,10 +18,30 @@ var SafariBrowser = function(baseBrowserDecorator) {
       });
     });
   };
+
+  this.kill = function() {
+    this.state = 4; // FINISHED
+    exec('osascript -e \'quit app "Safari"\'');
+  };
+
+  this.forceKill = function() {
+    this.kill();
+
+    return {
+      then: function(todo) {
+        todo();
+      }
+    };
+  };
+
+  this.restart = function() {
+    // nevermind
+  };
 };
 
+
 SafariBrowser.prototype = {
-  name: 'Safari',
+  name: 'Safari (kill hack)',
 
   DEFAULT_CMD: {
     darwin: '/Applications/Safari.app/Contents/MacOS/Safari',
@@ -35,5 +55,5 @@ SafariBrowser.$inject = ['baseBrowserDecorator'];
 
 // PUBLISH DI MODULE
 module.exports = {
-  'launcher:Safari': ['type', SafariBrowser]
+  'launcher:Safari-hack': ['type', SafariBrowser]
 };

@@ -6,14 +6,14 @@ To use (karma.conf):
 ```js
 module.exports = function(config) {
   config.set({
-    browsers: ['Safari-hack']
+    browsers: ['Safari']
   });
 };
 ```
 
 Or from the command line:
 ```bash
-karma start --browsers Safari-hack
+karma start --browsers Safari
 ```
 
 [homepage]: http://karma-runner.github.com

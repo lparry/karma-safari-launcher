@@ -55,5 +55,5 @@ SafariBrowser.$inject = ['baseBrowserDecorator'];
 
 // PUBLISH DI MODULE
 module.exports = {
-  'launcher:Safari-hack': ['type', SafariBrowser]
+  'launcher:Safari': ['type', SafariBrowser]
 };
